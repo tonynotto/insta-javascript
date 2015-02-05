@@ -27,7 +27,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
+<script type="text/javascript">
          $(document).ready(function() {
               console.log("Document is now ready!");
               var imageHolder = $("#instafeed");
@@ -36,34 +36,38 @@
               myToken = myToken[1];
               console.log(myToken);
               
-              function createHtml(data) {
+              function createHtml (data) {
                 console.log("createHtml function fired");
-                data=data.data;
+                data = data.data; 
                 for (var i = 0; i < data.length; i++) {
                   console.log(data[i]);
-                  var image = data[i].image.standard_resolution.url;
+                  var image = data[i].images.standard_resolution.url;
+                  console.log(image);
                   var htmlString =  '<br>' +
                                    '<h1>' + data[i].user.username + '</h1>' +  
                                     '<img src="' + image + '" class="img-thumbnail" />';
                   imageHolder.append(htmlString);
                   imageHolder.append(data[i]);
                 }
+                
               }
               
-              function getData(){
-              $.ajax({
-                type: 'GET',
-                url: "https://api.instagram.com/v1/users/self/feed?access_token=" + myToken,
-                dataType: 'jsonp',
-                success: function(json) {
-                  console.log("Data has been loaded from Instagram"); 
-                  createHtml(json);
-                },
-                error:  function(error) {
-                  console.log(error);
-                }
-              });
+              
+              function getData () {
+                  $.ajax({
+                    type: 'GET',
+                    url: "https://api.instagram.com/v1/users/self/feed?access_token=" + myToken,
+                    dataType: 'jsonp',
+                    success: function(json) {
+                      console.log("Data has been loaded from Instagram"); 
+                      createHtml(json);
+                    },
+                    error:  function(error) {
+                      console.log(error);
+                    }
+                  });
               }
+              
               getData();
          });
       </script>
