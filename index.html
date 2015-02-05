@@ -31,6 +31,21 @@
     $(document).ready(function() {
       console.log("Document is now ready!");
       var imageHolder = $("#instafeed");
+      console.log($(window));
+      var myToken = window.location.hash.split("=")[1]
+      console.log(myToken);
+      $.ajax({
+        type: 'GET',
+        url: "http://api.instagram.com/v1/users/self/feed?access_token=" + myToken,
+        dataType: 'jsonp',
+        success: function(data) {
+          console.log("Data has been loaded from Instagram");
+          console.log(data);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
     });
   </script>
 </body>
