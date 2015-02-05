@@ -41,8 +41,12 @@
                 data=data.data;
                 for (var i = 0; i < data.length; i++) {
                   console.log(data[i]);
-                  var image = data[i].image.standard_resoulution.url;
-                  imageHolder.append('<img src="' + image + '" />');
+                  var image = data[i].image.standard_resolution.url;
+                  var htmlString =  '<br>' +
+                                   '<h1>' + data[i].user.username + '</h1>' +  
+                                    '<img src="' + image + '" class="img-thumbnail" />';
+                  imageHolder.append(htmlString);
+                  imageHolder.append(data[i]);
                 }
               }
               
