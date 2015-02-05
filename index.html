@@ -36,7 +36,9 @@
               myToken = myToken[1];
               console.log(myToken);
               
-              
+              function createHtml() {
+                console.log("createHtml function fired");
+              }
               
               function getData(){
               $.ajax({
@@ -46,6 +48,7 @@
                 success: function(data) {
                   console.log("Data has been loaded from Instagram"); 
                   console.log(data);
+                  createHtml(data);
                 },
                 error:  function(error) {
                   console.log(error);
