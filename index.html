@@ -36,8 +36,13 @@
               myToken = myToken[1];
               console.log(myToken);
               
-              function createHtml() {
+              function createHtml(data) {
                 console.log("createHtml function fired");
+                data=data.data;
+                for (var i = 0; i < data.length; i++) {
+                  console.log(data[i]);
+                  imageHolder.append(data[i]);
+                }
               }
               
               function getData(){
@@ -47,14 +52,16 @@
                 dataType: 'jsonp',
                 success: function(data) {
                   console.log("Data has been loaded from Instagram"); 
-                  console.log(data);
-                  createHtml(data);
+                  var allPhotos = json.data;
+                  console.log(allPhotos);
+                  createHtml(allPhotos);
                 },
                 error:  function(error) {
                   console.log(error);
                 }
               });
-              };
+              }
+              getData();
          });
       </script>
 </body>
