@@ -42,7 +42,7 @@
                 for (var i = 0; i < data.length; i++) {
                   console.log(data[i]);
                   var image = data[i].image.standard_resoulution.url;
-                  imageHolder.append(data[i]);
+                  imageHolder.append('<img src="' + image + '" />');
                 }
               }
               
